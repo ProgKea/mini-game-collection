@@ -1,9 +1,4 @@
 #include "menu.h"
-#include <SDL2/SDL_events.h>
-#include <SDL2/SDL_keycode.h>
-#include <SDL2/SDL_log.h>
-#include <SDL2/SDL_render.h>
-#include <stdio.h>
 
 #define MENU_COUNT 2
 
