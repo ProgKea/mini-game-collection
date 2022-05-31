@@ -10,15 +10,16 @@ int main(void) {
         break;
       if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)
         break;
+      if (e.type == SDL_KEYDOWN)
+        menu_keys(e.key.keysym.sym);
     }
-    SDL_RenderClear(renderer);
 
-    SDL_SetRenderDrawColor(renderer, 28, 28, 28, 255);
-    SDL_RenderPresent(renderer);
+    if (is_menu) {
+      render_menu(renderer);
+    }
   }
 
   SDL_DestroyWindow(win);
   SDL_DestroyRenderer(renderer);
-
   return 0;
 }

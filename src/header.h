@@ -6,5 +6,6 @@
 #include <stdlib.h>
 
 #include "init.h"
+#include "menu.h"
 
 #endif
