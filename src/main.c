@@ -10,8 +10,8 @@ int main(void) {
         break;
       if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)
         break;
-      if (e.type == SDL_KEYDOWN)
-        menu_keys(e.key.keysym.sym);
+      if (is_menu)
+        menu_events(e, renderer, WIDTH);
     }
 
     if (is_menu) {
@@ -21,5 +21,6 @@ int main(void) {
 
   SDL_DestroyWindow(win);
   SDL_DestroyRenderer(renderer);
+  destroy_menu();
   return 0;
 }
