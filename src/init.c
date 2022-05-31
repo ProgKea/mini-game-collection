@@ -24,6 +24,4 @@ void init_sdl2() {
       win, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
   if (renderer == NULL)
     fprintf(stderr, "Failed to create renderer: %s\n", SDL_GetError());
-
-  init_menu_items(renderer, WIDTH);
 }
