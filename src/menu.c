@@ -32,8 +32,7 @@ MenuItems create_menu(SDL_Renderer *renderer, int screen_width) {
   MenuItems menu_items;
 
   menu_items.text[0] = "Flappy Bird";
-  menu_items.text[1] = "Pong";
-  menu_items.text[2] = "Tetris";
+  menu_items.text[1] = "Breakout";
 
   menu_items.index = 0;
 
@@ -73,9 +72,14 @@ void render_text(SDL_Renderer *renderer, MenuItems *menu_items, int start_y,
 }
 
 void destroy_menu(MenuItems menu_items) {
-  if (menu_items.font == NULL) {
+  if (menu_items.font != NULL)
     TTF_CloseFont(menu_items.font);
-  }
+
+  if (menu_items.menu_sound != NULL)
+    Mix_FreeChunk(menu_items.menu_sound);
+
+  if (menu_items.enter_sound != NULL)
+    Mix_FreeChunk(menu_items.enter_sound);
 
   for (int i = 0; i < MENU_COUNT; i++) {
     SDL_DestroyTexture(menu_items.texture[i]);

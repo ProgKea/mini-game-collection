@@ -10,7 +10,7 @@
 #include "game_state.h"
 
 #define FONT_PATH "assets/fonts/iosevka.ttf"
-#define MENU_COUNT 3
+#define MENU_COUNT 2
 #define FONT_SIZE 100
 
 typedef struct MenuItems {
