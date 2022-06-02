@@ -3,12 +3,12 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
-
-#include "menu.h"
+#include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_image.h>
 
 #define HEIGHT 900
-#define RESOLUTION 16 / 9
 #define WIDTH 900 * RESOLUTION
+#define RESOLUTION 16 / 9
 
 extern SDL_Window *win;
 extern SDL_Renderer *renderer;
