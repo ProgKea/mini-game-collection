@@ -133,6 +133,9 @@ void menu_events(SDL_Event e, SDL_Renderer *renderer, MenuItems *menu_items,
     case SDLK_RETURN:
       select_item(menu_items);
       break;
+    case SDLK_ESCAPE:
+      quit = true;
+      break;
     }
   }
 }

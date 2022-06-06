@@ -5,6 +5,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_image.h>
+#include <time.h>
 
 #define HEIGHT 900
 #define WIDTH 900 * RESOLUTION

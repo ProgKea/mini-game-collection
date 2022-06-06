@@ -6,6 +6,7 @@ SDL_Renderer *renderer = NULL;
 void init_sdl2(void) {
   Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2043);
   Mix_Volume(-1, MIX_MAX_VOLUME / 4);
+  srand(time(NULL));
 
   if (TTF_Init() > 0) {
     fprintf(stderr, "Failed to init SDL_ttf: %s\n", SDL_GetError());

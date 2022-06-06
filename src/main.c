@@ -1,6 +1,7 @@
 #include "header.h"
 
 game_state active_game_state = menu_state;
+bool quit = false;
 
 int main(void) {
   init_sdl2();
@@ -9,7 +10,7 @@ int main(void) {
 
   FlappyBird flappybird = create_bird(renderer, WIDTH, HEIGHT);
 
-  while (1) {
+  while (!quit) {
     SDL_Event e;
     if (SDL_PollEvent(&e)) {
       if (e.type == SDL_QUIT)
@@ -29,7 +30,7 @@ int main(void) {
       render_menu(renderer, &menu);
       break;
     case flappybird_state:
-      update_flappybird(&flappybird);
+      update_flappybird(WIDTH, HEIGHT, &flappybird);
       render_flappybird(renderer, flappybird);
       break;
     }
