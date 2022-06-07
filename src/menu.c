@@ -111,6 +111,9 @@ void select_item(MenuItems *menu_items) {
   case 0:
     active_game_state = flappybird_state;
     break;
+  case 1:
+    active_game_state = breakout_state;
+    break;
   default:
     play_sound = false;
     break;

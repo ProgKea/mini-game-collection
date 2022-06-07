@@ -7,6 +7,7 @@
 #include <stdbool.h>
 
 #include "flappybird.h"
+#include "breakout.h"
 #include "game_state.h"
 
 #define FONT_PATH "assets/fonts/iosevka.ttf"
