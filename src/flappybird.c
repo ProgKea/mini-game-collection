@@ -76,7 +76,7 @@ void reset_flappybird(SDL_Renderer *renderer, int screen_width,
   *bird = create_bird(renderer, screen_width, screen_height);
 }
 
-void end_game(FlappyBird *bird) { bird->game_running = false; }
+void end_game_flappybird(FlappyBird *bird) { bird->game_running = false; }
 
 void update_flappybird(int screen_width, int screen_height, FlappyBird *bird) {
   if (bird->game_running) {
@@ -91,7 +91,7 @@ void update_flappybird(int screen_width, int screen_height, FlappyBird *bird) {
       if (SDL_HasIntersection(&bird->rect, &bird->top_tubes[i]) ||
           SDL_HasIntersection(&bird->rect, &bird->bot_tubes[i]) ||
           bird->rect.y + bird->rect.h > screen_height || bird->rect.y < 0) {
-        end_game(bird);
+        end_game_flappybird(bird);
       }
 
       if (bird->bot_tubes[i].x == -bird->bot_tubes[i].w) {

@@ -1,4 +1,3 @@
-#include "breakout.h"
 #include "header.h"
 
 game_state active_game_state = menu_state;
