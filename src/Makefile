@@ -1,4 +1,4 @@
-CC=gcc
+CC=cc
 CC_CROSS=x86_64-w64-mingw32-gcc
 LIBS=`pkg-config --cflags --libs sdl2` -lSDL2_ttf -lSDL2_mixer -lSDL2_image
 CFLAGS=-Wall -pedantic -Wshadow -Werror 
