@@ -6,9 +6,8 @@
 
 #include "game_state.h"
 
-#define TARGET_COLS 8
-#define TARGET_ROWS 15
-#define MAX_TARGETS TARGET_ROWS * TARGET_COLS
+#define TARGET_ROWS 4
+#define TARGET_COLS 3
 
 typedef struct Target {
   bool killed;
@@ -19,10 +18,11 @@ typedef struct Target {
 typedef struct Breakout {
   SDL_Rect ball;
   int ball_speed;
-  int xdir;
-  int ydir;
+  int ball_xdir;
+  int ball_ydir;
   SDL_Rect player;
-  Target targets[MAX_TARGETS];
+  int player_xdir;
+  Target targets[TARGET_COLS][TARGET_ROWS];
   bool game_running;
 } Breakout;
 
