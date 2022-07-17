@@ -2,5 +2,5 @@
 
 ### Description
 
-In this repo trying to remake classic games like flappybird, tetris all in one
-program
+In this repo I am trying to remake classic games like flappybird, tetris all in one
+program.
