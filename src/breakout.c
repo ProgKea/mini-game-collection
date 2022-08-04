@@ -7,9 +7,9 @@ const SDL_Color BREAKOUT_BG_COLOR = {28, 28, 30, 255};
 const int BALL_SIZE = 30;
 const SDL_Color BALL_COLOR = {255, 255, 255, 255};
 
-const int PLAYER_WIDTH = 200;
-const int PLAYER_HEIGHT = 2;
-const int PLAYER_SPEED = 4;
+const int PLAYER_WIDTH = 100;
+const int PLAYER_HEIGHT = 20;
+const int PLAYER_SPEED = 6;
 const SDL_Color PLAYER_COLOR = {255, 28, 28, 255};
 
 const int TARGET_X_GAP = 20;
@@ -52,13 +52,6 @@ Breakout create_breakout(SDL_Renderer *renderer, int screen_width, int screen_he
 {
     Breakout breakout;
 
-    breakout.ball = (SDL_Rect){
-        .w = BALL_SIZE,
-        .h = BALL_SIZE,
-        .x = screen_width / 2,
-        .y = screen_height / 2,
-    };
-
     breakout.player = (SDL_Rect){
         .w = PLAYER_WIDTH,
         .h = PLAYER_HEIGHT,
@@ -66,11 +59,18 @@ Breakout create_breakout(SDL_Renderer *renderer, int screen_width, int screen_he
         .y = screen_height - PLAYER_HEIGHT - 10
     };
 
-    breakout.player_xdir = 0;
+    breakout.ball = (SDL_Rect){
+        .w = BALL_SIZE,
+        .h = BALL_SIZE,
+        .x = breakout.player.x + breakout.player.w / 2 - BALL_SIZE / 2,
+        .y = breakout.player.y - BALL_SIZE,
+    };
 
+    breakout.player_xdir = 0;
     breakout.ball_speed = 3;
     breakout.ball_xdir = 1;
     breakout.ball_ydir = 1;
+    breakout.ball_attached = true;
     breakout.game_running = true;
 
     create_targets(screen_width, screen_height, &breakout);
@@ -106,7 +106,9 @@ void check_collision(int screen_width, int screen_height, Breakout *breakout)
     }
 
     if (SDL_HasIntersection(&breakout->player, &breakout->ball)) {
-        breakout->ball.x = clamp(breakout->player.x, 0, screen_width - breakout->player.w);
+        if (breakout->player_xdir != 0) {
+            breakout->ball_xdir = breakout->player_xdir;
+        }
         breakout->ball_ydir = -1;
     }
 }
@@ -130,17 +132,8 @@ void events_breakout(SDL_Event e, SDL_Renderer *renderer, int screen_width, int 
             case SDLK_r:
             reset_breakout(renderer, screen_width, screen_height, breakout);
             break;
-        }
-    }
-    if (e.type == SDL_KEYUP) {
-        switch (e.key.keysym.sym) {
-            case SDLK_LEFT:
-            case SDLK_a:
-            breakout->player_xdir = 0;
-            break;
-            case SDLK_RIGHT:
-            case SDLK_d:
-            breakout->player_xdir = 0;
+            case SDLK_SPACE:
+            breakout->ball_attached = false;
             break;
         }
     }
@@ -153,8 +146,13 @@ void update_breakout(int screen_width, int screen_height, Breakout *breakout)
         if ((breakout->player.x < screen_width - breakout->player.w && breakout->player_xdir != -1) || (breakout->player.x > 0 && breakout->player_xdir != 1)) {
             breakout->player.x += breakout->player_xdir * PLAYER_SPEED;
         }
-        breakout->ball.x += breakout->ball_xdir * breakout->ball_speed;
-        breakout->ball.y += breakout->ball_ydir * breakout->ball_speed;
+        if (!breakout->ball_attached) {
+            breakout->ball.x += breakout->ball_xdir * breakout->ball_speed;
+            breakout->ball.y += breakout->ball_ydir * breakout->ball_speed;
+        }
+        else {
+            breakout->ball.x = breakout->player.x + breakout->player.w / 2 - BALL_SIZE / 2;
+        }
     }
 }
 
